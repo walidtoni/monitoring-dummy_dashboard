@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 export default function Body() {
     const [data, setData] = useState(Data);
     const [minplus, setMinplus] = useState(0);
-
+    const colors = ['text-red-500', 'text-blue-500', 'text-yellow-400', 'text-purple-500', 'text-orange-500', 'text-green-500', 'text-pink-600', 'text-green-800', 'text-blue-800'];
     useEffect(() => {
         const updater = [0.5, 2.5, 0, 1, 0.1, 0, 0.2, 0.1, 0.2];
 
@@ -27,7 +27,7 @@ export default function Body() {
                 else if (prevMinplus === 2) return -1;
                 else if (prevMinplus === -1) return 0;
             });
-        }, 2000);
+        }, 10000);
 
         return () => clearInterval(intervalId);
     }, [minplus]);
@@ -47,7 +47,7 @@ export default function Body() {
     return (
         <div className="w-max grid md:grid-cols-2 lg:grid-cols-3 justify-center gap-y-6 gap-x-8 py-10 px-4 lg:px-8 xl:px-16 max-w-[1200px] mx-auto mb-40">
             {data.map(item => (
-                <DisplayCard iconPath={iconPath[item.key]} key={item.name} title={item.name} value={item.value} qtt={item.qtt} time={item.lastUpdate} />
+                <DisplayCard color={colors[item.key]} iconPath={iconPath[item.key]} key={item.name} title={item.name} value={item.value} qtt={item.qtt} time={item.lastUpdate} />
             ))}
         </div>
     );
